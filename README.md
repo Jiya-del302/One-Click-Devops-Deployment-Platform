@@ -12,30 +12,34 @@ The platform automatically:
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-### ✅ Dockerized Application Deployment
-Deploy repositories containing a `Dockerfile`.
+### Dockerized Application Deployment
+Deploy repositories that already contain a `Dockerfile`.
 
-### ✅ Static Website Deployment
-Deploy repositories containing only:
+### Static Website Deployment
+Deploy repositories containing only static files such as:
 
 - `index.html`
 - `style.css`
 - `script.js`
 
-The platform automatically generates an Nginx Dockerfile when one is not provided for static websites.
+The platform automatically generates an Nginx Dockerfile when one is not provided.
 
-### ✅ Real-Time Deployment Pipeline UI
-- Cloning Repository
-- Building Docker Image
-- Starting Container
-- Deployment Completed
+### Real-Time Deployment Pipeline
+Users can track deployment progress through the UI:
 
-### ✅ Dynamic Port Allocation
-Each deployment is assigned a new host port automatically (`9001`, `9002`, `9003`, ...).
+1. Cloning Repository
+2. Building Docker Image
+3. Starting Container
+4. Deployment Completed
 
-### ✅ Clean Architecture
+### Dynamic Port Allocation
+Each deployment is automatically assigned a new host port (`9001`, `9002`, `9003`, ...).
+
+### Clean Backend Architecture
+The backend follows a layered structure:
+
 - Routes
 - Controllers
 - Services
@@ -45,19 +49,11 @@ Each deployment is assigned a new host port automatically (`9001`, `9002`, `9003
 
 ## 🏗️ Tech Stack
 
-### Frontend
-- React (Vite)
-- Axios
-- CSS
-
-### Backend
-- Node.js
-- Express
-
-### DevOps
-- Git
-- Docker
-- Nginx (for static site container generation)
+| Layer | Technologies |
+|---|---|
+| Frontend | React (Vite), Axios, CSS |
+| Backend | Node.js, Express |
+| DevOps | Git, Docker, Nginx |
 
 ---
 
@@ -65,29 +61,16 @@ Each deployment is assigned a new host port automatically (`9001`, `9002`, `9003
 
 ```text
 one-click-devops-platform/
-│
 ├── frontend/
-│   ├── src/
-│   └── package.json
-│
 ├── backend/
 │   ├── deployments/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   ├── utils/
-│   │   ├── app.js
-│   │   └── server.js
-│   └── package.json
-│
+│   └── src/
 └── README.md
 ```
-````
 
 ---
 
-## ⚙️ How It Works
+## ⚙️ Deployment Flow
 
 ```text
 User
@@ -113,17 +96,17 @@ Live URL Returned
 
 ---
 
-## 🖥️ Run Locally
+# 🖥️ Run Locally
 
-### Prerequisites
+## Prerequisites
 
-Install:
+Install the following software:
 
-* Node.js
-* Git
-* Docker Desktop
+- Node.js
+- Git
+- Docker Desktop
 
-Verify:
+Verify installation:
 
 ```bash
 node -v
@@ -134,7 +117,7 @@ docker --version
 
 ---
 
-### 1. Clone the Repository
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Jiya-del302/One-Click-Devops-Deployment-Platform.git
@@ -143,8 +126,16 @@ cd One-Click-Devops-Deployment-Platform
 
 ---
 
-### 2. Start Backend
-mkdir deployments (to store the cloned repo and files)
+## 2. Start the Backend
+
+Create a folder to store cloned repositories:
+
+```bash
+mkdir backend/deployments
+```
+
+Install dependencies and start the server:
+
 ```bash
 cd backend
 npm install
@@ -152,17 +143,15 @@ npm install cors dotenv
 node src/server.js
 ```
 
-Backend runs on:
+Backend URL:
 
-```text
-http://localhost:5000
-```
+**http://localhost:5000**
 
 ---
 
-### 3. Start Frontend
+## 3. Start the Frontend
 
-Open a new terminal:
+Open a new terminal and run:
 
 ```bash
 cd frontend
@@ -171,19 +160,17 @@ npm install axios
 npm run dev
 ```
 
-Frontend runs on:
+Frontend URL:
 
-```text
-http://localhost:5173
-```
+**http://localhost:5173**
 
 ---
 
-## 🧪 Testing the Platform
+# 🧪 Testing the Platform
 
-### Test with Dockerized Repository
+## Dockerized Repository
 
-Paste a public GitHub repository containing a `Dockerfile`.
+Paste a public GitHub repository URL containing a `Dockerfile`.
 
 Example:
 
@@ -193,54 +180,36 @@ https://github.com/username/sample-node-app
 
 ---
 
-### Test with Static Website
+## Static Website
 
-Create a repository containing only:
+Create a repository containing:
 
 ```text
 index.html
 style.css
 ```
 
-Paste the repository URL and click **Deploy Application**.
+Paste the repository URL into the application and click **Deploy Application**.
 
-The platform will automatically generate a Dockerfile and deploy the site.
-
----
-
-## 📦 Example Static Website
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Static Test</title>
-</head>
-<body>
-  <h1>Hello from Static Website</h1>
-</body>
-</html>
-```
+The platform will automatically generate a Dockerfile and deploy the website.
 
 ---
 
-## 🔍 Verify Deployment
+# 🔍 Verify Deployment
 
-### Check cloned repository
+### Check cloned repositories
 
 ```text
 backend/deployments/
 ```
 
-### Check Docker containers
+### Check running containers
 
 ```bash
 docker ps
 ```
 
-### Open deployed application
-
-Example:
+### Open the deployed application
 
 ```text
 http://localhost:9001
@@ -248,13 +217,13 @@ http://localhost:9001
 
 ---
 
-## 🛠️ API Endpoint
+# 🛠️ API Endpoint
 
 ### Deploy Repository
 
 **POST** `/api/deploy`
 
-Request:
+Request body:
 
 ```json
 {
@@ -262,7 +231,7 @@ Request:
 }
 ```
 
-Success Response:
+Example response:
 
 ```json
 {
@@ -274,37 +243,33 @@ Success Response:
 ```
 
 ---
-## 🚀 Future Enhancements
 
-* AWS EC2 deployment
-* Nginx reverse proxy for deployed applications
-* Application Load Balancer
-* Auto Scaling Group
-* Terraform infrastructure provisioning
-* Jenkins CI/CD integration
-* Deployment history dashboard
-* Container stop/remove functionality
-* Custom subdomain support
+# 🚀 Future Enhancements
+
+- AWS EC2 deployment
+- Nginx reverse proxy for deployed applications
+- Application Load Balancer
+- Auto Scaling Group
+- Terraform infrastructure provisioning
+- Jenkins CI/CD integration
+- Deployment history dashboard
+- Container stop/remove functionality
+- Custom subdomain support
 
 ---
 
-## 👩‍💻 Author
+# 👩‍💻 Author
 
 **Jiya Pardeshi**
 
-* B.Sc. Computer Science
-* Cloud Application Developer
-* Aspiring Cloud & DevOps Engineer
+- B.Sc. Computer Science
+- Cloud Application Developer
+- Aspiring Cloud & DevOps Engineer
 
 GitHub: https://github.com/Jiya-del302
 
 ---
 
-## 📄 License
+# 📄 License
 
 This project is created for educational and portfolio purposes.
-
-````
-
----
-
